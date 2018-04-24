@@ -62,13 +62,15 @@
       "metadata": {
         "description": "Client ID (used by cloudprovider)"
       },
-      "type": "securestring"
+      "type": "securestring",
+      "defaultValue": ""
     },
     "servicePrincipalClientSecret": {
       "metadata": {
         "description": "The Service Principal Client Secret."
       },
-      "type": "securestring"
+      "type": "securestring",
+      "defaultValue": ""
     }
   },
   "variables": {
