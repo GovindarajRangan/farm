@@ -14,3 +14,6 @@ Batch:
 az login
 az group create --name myFarm --location "East US"
 
+Accessing the cluster:
+az aks install-cli --install-location c:\users\govin\k8s
+az aks browse --resource-group myFarm --name myFarm
