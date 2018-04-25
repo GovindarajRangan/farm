@@ -13,4 +13,4 @@ Services necessary for monitoring, logging, alerting, reporting
 Batch:
 az login
 az group create --name myFarm --location "East US"
-az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/18205e31-05af-4759-aa25-2bb2be2bc1d4/resourceGroups/myFarm"
+
