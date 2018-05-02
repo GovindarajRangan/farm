@@ -14,13 +14,13 @@ spec:
         image: nginx
         ports:
         - containerPort: 80
+        volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: pvc-data
       volumes:
       - name: pvc-data
         persistentVolumeClaim:
           claimName: pvc-data
-      volumeMounts:
-      - mountPath: "/usr/share/nginx/html"
-        name: pvc-data
 ---
 apiVersion: v1
 kind: Service
