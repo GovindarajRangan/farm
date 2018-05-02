@@ -23,7 +23,7 @@ metadata:
     storage: slow
 spec:
   capacity:
-    storage: 2Gi
+    storage: 5Gi
   accessModes:
   - ReadWriteMany
   storageClassName: my-farm-storage
@@ -31,3 +31,15 @@ spec:
     secretName: static-persistence-secret
     shareName: graph
     readOnly: false
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: my-farm-storage
+  resources:
+    requests:
+      storage: 2Gi

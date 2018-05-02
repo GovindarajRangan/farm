@@ -19,3 +19,4 @@ az aks install-cli --install-location c:\users\govin\k8s
 az aks browse --resource-group myFarm --name myFarm
 az aks get-credentials --resource-group myFarm --name myFarm
 kubectl get nodes
+
