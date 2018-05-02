@@ -13,6 +13,7 @@ Services necessary for monitoring, logging, alerting, reporting
 Batch:
 az login
 az group create --name myFarm --location "East US"
+az network public-ip create --resource-group myFarm --name myAKSPublicIP --allocation-method static
 
 Accessing the cluster:
 az aks install-cli --install-location c:\users\govin\k8s

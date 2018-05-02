@@ -27,6 +27,7 @@ kind: Service
 metadata:
   name: my-nginx
 spec:
+  loadBalancerIP: 138.91.112.229
   type: LoadBalancer
   ports:
   - port: 80

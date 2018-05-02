@@ -3,6 +3,19 @@
   "contentVersion": "1.0.0.0",
   "parameters": {   },
   "variables": {  },
-  "resources": [  ],
+  "resources": [
+      {
+        "apiVersion": "2015-06-15",
+        "type": "Microsoft.Network/publicIPAddresses",
+        "name": "AKSPublicIP",
+        "location": "[resourceGroup().location]",
+        "properties": {
+          "publicIPAllocationMethod": "Static",
+          "dnsSettings": {
+            "domainNameLabel": "aksgovind"
+          }
+        }
+      }
+    ],
   "outputs": {  }
 }
