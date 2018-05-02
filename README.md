@@ -20,3 +20,4 @@ az aks browse --resource-group myFarm --name myFarm
 az aks get-credentials --resource-group myFarm --name myFarm
 kubectl get nodes
 
+kubectl exec -it <pod-name> -- /bin/bash

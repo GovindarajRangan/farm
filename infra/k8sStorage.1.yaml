@@ -20,7 +20,7 @@ kind: PersistentVolume
 metadata:
   name: static-persistence-volume-graph
   labels: 
-    farm: my-farm
+    storage: slow
 spec:
   capacity:
     storage: 5Gi
@@ -38,12 +38,9 @@ metadata:
   name: pvc-data
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   storageClassName: my-farm-storage
   resources:
     requests:
       storage: 2Gi
-  selector:
-    matchLabels:
-      farm: my-farm
 ---
