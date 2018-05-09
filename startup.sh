@@ -28,3 +28,7 @@ az aks get-credentials --resource-group myFarm --name myFarm
 kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sStorage.yaml
 kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sSamplePod2.yaml
 
+kubectl create serviceaccount --namespace kube-system tiller
+kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sTiller.yaml
+helm init --service-account tiller

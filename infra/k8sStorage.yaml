@@ -20,7 +20,8 @@ kind: PersistentVolume
 metadata:
   name: static-persistence-volume-graph
   labels: 
-    farm: my-farm
+    env: staging
+    share: graph
 spec:
   capacity:
     storage: 5Gi
@@ -45,5 +46,6 @@ spec:
       storage: 2Gi
   selector:
     matchLabels:
-      farm: my-farm
+      env: staging
+      share: graph
 ---

@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: moodywall.com
+    http:
+      paths:
+      - path: /nginx
+        backend:
+          serviceName: my-nginx
+          servicePort: 80
