@@ -1,54 +1,44 @@
-## Needs MySQL
----
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: project-management
+  name: project-management-open
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: tuleap
+        app: open-project
     spec:
       containers:
-      - name: tuleap
-        image: enalean/tuleap-aio
+      - name: open-project
+        image: openproject/community:7
         ports:
         - containerPort: 80
-          name: site
-        - containerPort: 443
-          name: secure-site
-        - containerPort: 22
-          name: ssh
         volumeMounts:
-        - mountPath: "/data"
-          name: pvc-pmo
+        - mountPath: "/var/lib/postgresql/9.4/main"
+          name: pv-pmo
+        - mountPath: /var/db/openproject
+          name: pv-pmo
       volumes:
-      - name: pvc-pmo
+      - name: pv-pmo
         persistentVolumeClaim:
           claimName: pvc-pmo
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: pmo-tuleap
+  name: pmo-openproject
 spec:
   type: ClusterIP
   ports:
   - port: 80
-    name: site
-  - port: 443
-    name: secure-site
-  - port: 22
-    name: ssh
   selector:
-    app: pmo-tuleap
+    app: open-project
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: pmo-tuleap
+  name: pmo-openproject
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
@@ -56,7 +46,7 @@ spec:
   - host: aksgovind.eastus.cloudapp.azure.com
     http:
       paths:
-      - path: /pmo
+      - path: /pmopen
         backend:
-          serviceName: pmo-tuleap
+          serviceName: pmo-openproject
           servicePort: 80
