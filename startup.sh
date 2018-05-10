@@ -25,10 +25,9 @@ az aks create \
 
 az resource move --destination-group MC_myFarm_myFarm_eastus --ids /subscriptions/18205e31-05af-4759-aa25-2bb2be2bc1d4/resourceGroups/myFarm/providers/Microsoft.Network/publicIPAddresses/AKSPublicIP
 az aks get-credentials --resource-group myFarm --name myFarm
+helm repo update
+helm init --service-account default
+helm install stable/nginx-ingress --name my-ingress --namespace kube-system
+
 kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sStorage.yaml
 kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sSamplePod2.yaml
-
-kubectl create serviceaccount --namespace kube-system tiller
-kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
-kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sTiller.yaml
-helm init --service-account tiller
