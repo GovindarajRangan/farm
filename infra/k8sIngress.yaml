@@ -1,12 +1,12 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: test
+  name: pvctest
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: moodywall.com
+  - host: aksgovind.eastus.cloudapp.azure.com
     http:
       paths:
       - path: /nginx
