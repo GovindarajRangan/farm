@@ -1,3 +1,7 @@
+#Things to change when building a new cluster in a new provider or in a different resource group
+# loadBalancerIP
+# Default DNS for the AKSPublicIP is aksgovind.eastus.cloudapp.azure.com
+
 az acs create \
     --name myFarm \
     --resource-group myFarm \
@@ -27,7 +31,7 @@ az resource move --destination-group MC_myFarm_myFarm_eastus --ids /subscription
 az aks get-credentials --resource-group myFarm --name myFarm
 helm repo update
 helm init --service-account default
-helm install stable/nginx-ingress --name my-ingress --namespace kube-system
+helm install stable/nginx-ingress --name mwingress --namespace kube-system --set controller.service.loadBalancerIP=138.91.112.229
 
 kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sStorage.yaml
 kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sSamplePod2.yaml
