@@ -1,0 +1,60 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: project-management
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: tuleap
+    spec:
+      containers:
+      - name: tuleap
+        image: enalean/tuleap-aio
+        ports:
+        - containerPort: 80
+          name: site
+        - containerPort: 443
+          name: secure-site
+        - containerPort: 22
+          name: ssh
+        volumeMounts:
+        - mountPath: "/data"
+          name: pvc-pmo
+      volumes:
+      - name: pvc-pmo
+        persistentVolumeClaim:
+          claimName: pvc-pmo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pmo-tuleap
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    name: site
+  - port: 443
+    name: secure-site
+  - port: 22
+    name: ssh
+  selector:
+    app: pmo-tuleap
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: pmo-tuleap
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: aksgovind.eastus.cloudapp.azure.com
+    http:
+      paths:
+      - path: /pmo
+        backend:
+          serviceName: pmo-tuleap
+          servicePort: 80
