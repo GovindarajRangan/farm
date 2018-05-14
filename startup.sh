@@ -35,8 +35,17 @@ helm install stable/nginx-ingress --name mwingress --namespace kube-system --set
 
 kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sStorage.yaml
 # Tuleap Project Management tool
-kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/pmoTuleap.yaml
+# kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/pmoTuleap.yaml
+kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/pmoOpenProject.yaml
 
 # samole services
 kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sSamplePod2.yaml
 kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sIngress.yaml
+
+# Get SSH connection
+kubectl run -it --rm aks-ssh --image=debian
+apt-get update && apt-get install openssh-client -y
+#kubectl cp ~/.ssh/id_rsa <aks-ssh pod_name>:/id_rsa
+kubectl cp ..\.ssh\aks_id_rsa.pub aks-ssh-56d9d4d98-wwhr8:/id_rsa
+cd /
+chmod 0600 id_rsa
