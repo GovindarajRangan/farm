@@ -31,7 +31,7 @@ az resource move --destination-group MC_myFarm_myFarm_eastus --ids /subscription
 az aks get-credentials --resource-group myFarm --name myFarm
 helm repo update
 helm init --service-account default
-helm install stable/nginx-ingress --name mwingress --namespace kube-system --set controller.service.loadBalancerIP=138.91.112.229
+helm install stable/nginx-ingress --name mwingress --set rbac.create=false --namespace kube-system --set controller.service.loadBalancerIP=138.91.112.229
 
 kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sStorage.yaml
 # Tuleap Project Management tool
