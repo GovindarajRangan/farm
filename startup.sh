@@ -29,10 +29,13 @@ az aks create \
 
 az resource move --destination-group MC_myFarm_myFarm_eastus --ids /subscriptions/18205e31-05af-4759-aa25-2bb2be2bc1d4/resourceGroups/myFarm/providers/Microsoft.Network/publicIPAddresses/AKSPublicIP
 az aks get-credentials --resource-group myFarm --name myFarm
+kubectl --namespace kube-system create serviceaccount tiller
+helm init --service-account tiller
+# Wait for tiller pod to be deployed
 helm repo update
-helm init --service-account default
-helm install stable/nginx-ingress --name mwingress --set rbac.create=false --namespace kube-system --set controller.service.loadBalancerIP=138.91.112.229
-
+# https://docs.microsoft.com/en-us/azure/aks/ingress
+helm install stable/nginx-ingress --name mwingress --namespace kube-system --set controller.service.loadBalancerIP=138.91.112.229 --set rbac.create=false --set rbac.createRole=false --set rbac.createClusterRole=false
+# Wait for Load balancer to be up and ingress controller to be running
 kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sStorage.yaml
 # Tuleap Project Management tool
 # kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/pmoTuleap.yaml
