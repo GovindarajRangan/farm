@@ -37,13 +37,7 @@ helm repo update
 helm install stable/nginx-ingress --name mwingress --namespace kube-system --set controller.service.loadBalancerIP=138.91.112.229 --set rbac.create=false --set rbac.createRole=false --set rbac.createClusterRole=false
 # Wait for Load balancer to be up and ingress controller to be running
 kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sStorage.yaml
-# Tuleap Project Management tool
-# kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/pmoTuleap.yaml
-kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/pmoOpenProject.yaml
-
-# samole services
-kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sSamplePod2.yaml
-kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sIngress.yaml
+kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/pmoIceScrum.yaml
 
 # Get SSH connection
 kubectl run -it --rm aks-ssh --image=debian
@@ -52,3 +46,13 @@ apt-get update && apt-get install openssh-client -y
 kubectl cp ..\.ssh\aks_id_rsa.pub aks-ssh-56d9d4d98-wwhr8:/id_rsa
 cd /
 chmod 0600 id_rsa
+
+
+#####################################################
+### TESTED & ARCHIVED
+# Tuleap Project Management tool
+# kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/pmoTuleap.yaml
+# samole services
+# kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sSamplePod2.yaml
+# kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sIngress.yaml
+
