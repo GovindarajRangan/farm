@@ -1,0 +1,84 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: static-persistence-volume-pmo-icescrum
+  labels: 
+    env: management
+    share: pmo
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+  - ReadWriteMany
+  storageClassName: my-farm-storage
+  azureFile:
+    secretName: static-persistence-secret
+    shareName: pmo
+    readOnly: false
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-pmo-icescrum
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: my-farm-storage
+  resources:
+    requests:
+      storage: 10Gi
+  selector:
+    matchLabels:
+      env: management
+      share: pmo
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: project-management-icescrum
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: icescrum
+    spec:
+      containers:
+      - name: icescrum
+        image: icescrum/icescrum
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - mountPath: "/root"
+          name: pv-pmo-icescrum
+      volumes:
+      - name: pv-pmo-icescrum
+        persistentVolumeClaim:
+          claimName: pvc-pmo-icescrum
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pmo-icescrum
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8080
+  selector:
+    app: icescrum
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: pmo-icescrum
+  annotations:
+    nginx.ingress.kubernetes.io/add-base-url: /icescrum
+spec:
+  rules:
+  - host: aksgovind.eastus.cloudapp.azure.com
+    http:
+      paths:
+      - path: /icescrum
+        backend:
+          serviceName: pmo-icescrum
+          servicePort: 8080
