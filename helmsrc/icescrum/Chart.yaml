@@ -1,5 +1,0 @@
-apiVersion: v1
-appVersion: "1.0"
-description: IceScrum Agile Project Management tool
-name: icescrum
-version: 0.1.0
