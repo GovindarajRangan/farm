@@ -1,6 +1,9 @@
 #Things to change when building a new cluster in a new provider or in a different resource group
 # loadBalancerIP
 # Default DNS for the AKSPublicIP is aksgovind.eastus.cloudapp.azure.com
+# SSH Key value
+# Storage account and secret
+# 
 
 az acs create \
     --name myFarm \
@@ -38,6 +41,9 @@ helm install stable/nginx-ingress --name mwingress --namespace kube-system --set
 # Wait for Load balancer to be up and ingress controller to be running
 kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sStorage.yaml
 kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/pmoIceScrum.yaml
+helm repo add monocular https://kubernetes-helm.github.io/monocular
+helm install monocular/monocular
+
 
 # Get SSH connection
 kubectl run -it --rm aks-ssh --image=debian
