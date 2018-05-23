@@ -1,3 +1,13 @@
 apiVersion: v1
-entries: {}
-generated: 2018-05-17T23:00:43.9960253-04:00
+entries:
+  icescrum:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: 2018-05-22T21:21:46.0707856-04:00
+    description: IceScrum Agile Project Management
+    digest: f7a8a4fe60e91cb6ff6539ef6b2f0745fb3bb536b4a266ff33fc0502156d4111
+    name: icescrum
+    urls:
+    - icescrum-0.1.0.tgz
+    version: 0.1.0
+generated: 2018-05-22T21:21:46.0697863-04:00

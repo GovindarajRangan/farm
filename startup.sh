@@ -44,6 +44,8 @@ kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master
 helm repo add monocular https://kubernetes-helm.github.io/monocular
 helm install monocular/monocular
 
+#helm dry run
+helm install --debug --dry-run icescrum
 
 # Get SSH connection
 kubectl run -it --rm aks-ssh --image=debian

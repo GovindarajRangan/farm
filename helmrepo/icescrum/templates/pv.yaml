@@ -1,0 +1,22 @@
+{{-  $pvName := printf "%s-%s-%s" .Release.Name .Chart.Name "pv" -}}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ $pvName }}
+  labels: 
+    app: {{ template "icescrum.name" . }}
+    chart: {{ template "icescrum.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    env: management
+    share: {{ .Values.storage.share }}
+spec:
+  capacity:
+    storage: {{ .Values.storage.capacity }}
+  accessModes:
+  - ReadWriteMany
+  storageClassName: {{ .Values.storage.class }}
+  azureFile:
+    secretName: {{ .Values.storage.azure.secretName }}
+    shareName: {{ .Values.storage.share }}
+    readOnly: false
