@@ -47,6 +47,7 @@ helm install monocular/monocular
 #helm dry run
 helm install --debug --dry-run icescrum
 
+
 # Get SSH connection
 kubectl run -it --rm aks-ssh --image=debian
 apt-get update && apt-get install openssh-client -y

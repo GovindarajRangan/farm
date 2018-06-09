@@ -1,0 +1,31 @@
+# Meta data and Parameterization standards for Dockerfile, K8S native yamls and Helm packaging
+# This may or may not include default parameters and metadata
+
+docker:
+  dockerfile:
+    # build time arguments
+    arg:
+    # run time environment
+    env:
+    # information
+    labels:
+      livenessProbe:
+      readinessProbe:
+  image:
+    size:
+    tag:
+      repo:
+      name:
+      version:
+    ContainerConfig:
+      ExposedPorts:
+    Cmd:
+    Volumes:
+    labels:
+      projectId:
+      buildId:
+      repoName:
+      committerName:
+      timeStamp:
+
+helm:
