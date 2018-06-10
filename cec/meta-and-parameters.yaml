@@ -11,6 +11,8 @@ docker:
     labels:
       livenessProbe:
       readinessProbe:
+      dependentServices:
+      license:
   image:
     size:
     tag:
@@ -19,13 +21,31 @@ docker:
       version:
     ContainerConfig:
       ExposedPorts:
+      livenessProbe: docker.dockerfile.labels.livenessProbe
+      readinessProbe: docker.dockerfile.labels.readinessProbe
     Cmd:
     Volumes:
-    labels:
+    labels: #(use docker build --label to dynamically update labels at build time)
       projectId:
       buildId:
       repoName:
       committerName:
       timeStamp:
+      dependentServices: docker.dockerfile.labels.dependentServices
 
 helm:
+  image: docker.image
+  volumes: docker.image.Volumes
+  ports: docker.image.ExposedPorts
+  ingressVirtualDirectory:
+  fqdn:
+  env:
+    run: [test|staging|prod] # Test includes debug requirements, such as enabling ssh into container
+
+artifacts:
+  source: git (private)
+  containers: docker-registry (private)
+  charts: helm-repo (private)
+  npm: npm-repo (private)
+  secrets: (vault?)
+  data: azure-storage-account
