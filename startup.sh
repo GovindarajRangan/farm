@@ -40,9 +40,8 @@ helm repo update
 helm install stable/nginx-ingress --name mwingress --namespace kube-system --set controller.service.loadBalancerIP=138.91.112.229 --set rbac.create=false --set rbac.createRole=false --set rbac.createClusterRole=false
 # Wait for Load balancer to be up and ingress controller to be running
 kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sStorage.yaml
-kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/pmoIceScrum.yaml
-helm repo add monocular https://kubernetes-helm.github.io/monocular
-helm install monocular/monocular
+helm repo add myFarm https://raw.githubusercontent.com/GovindarajRangan/farm/master/helmrepo/
+helm install icescrum
 
 #helm dry run
 helm install --debug --dry-run icescrum
@@ -64,4 +63,7 @@ chmod 0600 id_rsa
 # samole services
 # kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sSamplePod2.yaml
 # kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sIngress.yaml
+# kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/pmoIceScrum.yaml
+# helm repo add monocular https://kubernetes-helm.github.io/monocular
+# helm install monocular/monocular
 

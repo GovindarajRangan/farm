@@ -13,6 +13,8 @@ docker:
       readinessProbe:
       dependentServices:
       license:
+      operability: # GitOps code for configuration, monitoring, logging
+      security: # Secops code for security
   image:
     size:
     tag:
