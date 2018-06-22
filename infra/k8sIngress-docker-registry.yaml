@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: docker-registry-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/add-base-url: /registry
+spec:
+  rules:
+  - host: aksgovind.eastus.cloudapp.azure.com
+    http:
+      paths:
+      - path: /registry
+        backend:
+          serviceName: sullen-aardwolf-docker-registry
+          servicePort: 5000

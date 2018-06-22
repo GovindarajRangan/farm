@@ -42,6 +42,9 @@ helm install stable/nginx-ingress --name mwingress --namespace kube-system --set
 kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sStorage.yaml
 helm repo add myFarm https://raw.githubusercontent.com/GovindarajRangan/farm/master/helmrepo/
 helm install icescrum
+
+# Docker registry
+kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sStorage-docker-registry.yaml
 helm install --set persistence.accessMode=ReadWriteMany,persistence.enabled=true,persistence.size=50Gi,persistence.storageClass=my-farm-storage,persistence.existingClaim=pvc-docker-registry stable/docker-registry
 #helm dry run
 helm install --debug --dry-run icescrum
