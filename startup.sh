@@ -46,6 +46,7 @@ helm install icescrum
 # Docker registry
 kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sStorage-docker-registry.yaml
 helm install --set persistence.accessMode=ReadWriteMany,persistence.enabled=true,persistence.size=50Gi,persistence.storageClass=my-farm-storage,persistence.existingClaim=pvc-docker-registry stable/docker-registry
+kubectl create secret tls foo-secret --key ./farm/infra/tls.key --cert ./farm/infra/tls.crt
 kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sIngress-docker-registry.yaml
 
 #helm dry run

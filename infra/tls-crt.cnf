@@ -1,0 +1,17 @@
+[req]
+distinguished_name  = req_distinguished_name
+prompt              = no
+
+[v3_req]
+subjectAltName      = @alt_names
+
+[alt_names]
+DNS.1               = aksgovind.eastus.cloudapp.azure.com
+
+[req_distinguished_name]
+commonName          = aksgovind.eastus.cloudapp.azure.com
+countryName         = US
+stateOrProvinceName = NJ
+localityName        = Plainsboro
+organizationName    = Mortal Infra
+organizationalUnitName  = Kubernetes
