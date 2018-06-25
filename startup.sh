@@ -46,7 +46,7 @@ helm install icescrum
 # Docker registry
 kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sStorage-docker-registry.yaml
 helm install --set persistence.accessMode=ReadWriteMany,persistence.enabled=true,persistence.size=50Gi,persistence.storageClass=my-farm-storage,persistence.existingClaim=pvc-docker-registry stable/docker-registry
-kubectl create secret tls foo-secret --key ./farm/infra/tls.key --cert ./farm/infra/tls.crt
+# Edit Ingress for the docker-registry service name for now, need to convert this into helm chart
 kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sIngress-docker-registry.yaml
 
 #helm dry run
@@ -56,10 +56,14 @@ helm install --debug --dry-run icescrum
 # Get SSH connection
 kubectl run -it --rm aks-ssh --image=debian
 apt-get update && apt-get install openssh-client -y
+# Reset azureuser password if you want to login
 #kubectl cp ~/.ssh/id_rsa <aks-ssh pod_name>:/id_rsa
 kubectl cp ..\.ssh\aks_id_rsa.pub aks-ssh-56d9d4d98-wwhr8:/id_rsa
 cd /
 chmod 0600 id_rsa
+ssh -i id_rsa azureuser@10.240.0.6
+# Re-attach
+kubectl attach aks-ssh-56d9d4d98-cp5hd -c aks-ssh -i -t
 
 
 #####################################################
