@@ -28,7 +28,7 @@ az aks create \
     --dns-name-prefix myFarm \
     --ssh-key-value "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEA5rLPzTKtynuUMYFQ9Avwpbmms0d2CZzRh/8a2rrbSRag39zt8rAkXcuzfO3apLkrDKj9PYbO5LJPWXtZpay+STKWvYEdrhhpaT0/7v35BmIoJGj6xchCnHM8J0/C0Osz8FfAbOVjGA9podjYeNnl1KwoIpbb1HOAaYnRRpAFE3zIGzz5LS5tnHrIe2f52YWuIChRkITVNBi6uKSzJ/Q4Nmu8xBmQHAgSa6i2/MEZ3CcCffuaVw48aHCqGXlL/ivBlapvgMKhfam+YynoW88JgOb6eUiuYIbez2kcL1O/MMsiE1BcraX0/+9q4J1X56K4S0eJfwbvULL4cL2JIXVbIw== govindaraj.rangan@wipro.com" \
     --service-principal 3d957a5d-76d3-4b20-acc0-02881c366401 \
-    --client-secret tLIB7wi+mGV8nnQskftuIYeJMr9FSIbBoHxFQwz4ERw=
+    --client-secret tLIB7wi+mGV8nnQskftuIYeJMr9FSIbBoHxFQwz4ERw= 
 
 az resource move --destination-group MC_myFarm_myFarm_eastus --ids /subscriptions/18205e31-05af-4759-aa25-2bb2be2bc1d4/resourceGroups/myFarm/providers/Microsoft.Network/publicIPAddresses/AKSPublicIP
 az aks get-credentials --resource-group myFarm --name myFarm
@@ -36,6 +36,9 @@ kubectl --namespace kube-system create serviceaccount tiller
 helm init --service-account tiller
 # Wait for tiller pod to be deployed
 helm repo update
+kubectl create clusterrolebinding tiller-cluster-role --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+kubectl create clusterrolebinding kube-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
+
 # https://docs.microsoft.com/en-us/azure/aks/ingress
 helm install stable/nginx-ingress --name mwingress --namespace kube-system --set controller.service.loadBalancerIP=138.91.112.229 --set rbac.create=false --set rbac.createRole=false --set rbac.createClusterRole=false
 # Wait for Load balancer to be up and ingress controller to be running
