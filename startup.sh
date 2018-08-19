@@ -40,7 +40,10 @@ kubectl create clusterrolebinding tiller-cluster-role --clusterrole=cluster-admi
 kubectl create clusterrolebinding kube-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
 
 # https://docs.microsoft.com/en-us/azure/aks/ingress
-helm install stable/nginx-ingress --name mwingress --namespace kube-system --set controller.service.loadBalancerIP=138.91.112.229 --set rbac.create=false --set rbac.createRole=false --set rbac.createClusterRole=false
+# With RBAC
+helm install stable/nginx-ingress --name mwingress --namespace kube-system --set controller.service.loadBalancerIP=138.91.112.229
+# Without RBAC
+# helm install stable/nginx-ingress --name mwingress --namespace kube-system --set controller.service.loadBalancerIP=138.91.112.229 --set rbac.create=false --set rbac.createRole=false --set rbac.createClusterRole=false
 # Wait for Load balancer to be up and ingress controller to be running
 kubectl create -f https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/k8sStorage.yaml
 helm repo add myFarm https://raw.githubusercontent.com/GovindarajRangan/farm/master/helmrepo/
