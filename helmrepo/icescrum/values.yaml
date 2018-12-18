@@ -22,6 +22,7 @@ ingress:
   path: /icescrum
   hosts: 
     - aksgovind.eastus.cloudapp.azure.com
+    - cloudservices.wipro.com
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
