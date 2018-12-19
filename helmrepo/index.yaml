@@ -1,13 +1,23 @@
 apiVersion: v1
 entries:
+  catalog:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: 2018-12-18T19:52:43.9507542-05:00
+    description: Wipro Cloud Services Catalog
+    digest: 98131857b35b5d09b4db196e87c85368497054179ee2c1302ec79a334d948658
+    name: catalog
+    urls:
+    - catalog-1.0.0.tgz
+    version: 1.0.0
   icescrum:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2018-08-06T17:31:28.3888417-04:00
+    created: 2018-12-18T19:52:43.9517544-05:00
     description: IceScrum Agile Project Management
-    digest: 11a16b3876ad0d18f7e07ff624a3501f994029570f9e2c2396615fbe11488d43
+    digest: c799fb9779855322c07e432a275904cf4891e74b66a3f1eb9216f00953f1f13d
     name: icescrum
     urls:
     - icescrum-1.0.0.tgz
     version: 1.0.0
-generated: 2018-08-06T17:31:28.387839-04:00
+generated: 2018-12-18T19:52:43.9497565-05:00

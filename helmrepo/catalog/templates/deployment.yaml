@@ -1,0 +1,36 @@
+{{-  $pvName := printf "%s-%s-%s" .Release.Name .Chart.Name "pv" -}}
+{{-  $pvcName := printf "%s-%s-%s" .Release.Name .Chart.Name "pvc" -}}
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "catalog.fullname" . }}
+  labels:
+    app: {{ template "catalog.name" . }}
+    chart: {{ template "catalog.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "catalog.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "catalog.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+          - containerPort: 8080
+          volumeMounts:
+          - mountPath: "/root"
+            name: {{ $pvName }}
+      volumes:
+      - name: {{ $pvName }}
+        persistentVolumeClaim:
+          claimName: {{ $pvcName }}

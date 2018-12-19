@@ -1,0 +1,27 @@
+{{-  $pvcName := printf "%s-%s-%s" .Release.Name .Chart.Name "pvc" -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ $pvcName }}
+  labels:
+    app: {{ template "catalog.name" . }}
+    chart: {{ template "catalog.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    env: management
+    share: {{ .Values.storage.share }}
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: {{ .Values.storage.class }}
+  resources:
+    requests:
+      storage: {{ .Values.storage.capacity }}
+  selector:
+    matchLabels:
+      app: {{ template "catalog.name" . }}
+      chart: {{ template "catalog.chart" . }}
+      release: {{ .Release.Name }}
+      heritage: {{ .Release.Service }}
+      env: management
+      share: {{ .Values.storage.share }}

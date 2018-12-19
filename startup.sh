@@ -71,6 +71,9 @@ ssh -i id_rsa azureuser@10.240.0.6
 # Re-attach
 kubectl attach aks-ssh-56d9d4d98-cp5hd -c aks-ssh -i -t
 
+# Docker registry in Azure Container Registry service is created within the myFarm resource group
+# Registry name: wipro, Login server: wipro.azurecr.io, user: wipro
+docker login --username wipro --password <> wipro.azurecr.io
 
 #####################################################
 ### TESTED & ARCHIVED

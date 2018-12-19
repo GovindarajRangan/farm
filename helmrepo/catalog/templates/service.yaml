@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "catalog.fullname" . }}
+  labels:
+    app: {{ template "catalog.name" . }}
+    chart: {{ template "catalog.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+  - port: {{ .Values.service.port }}
+  selector:
+    app: {{ template "catalog.name" . }}
+    release: {{ .Release.Name }}
