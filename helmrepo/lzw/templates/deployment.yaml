@@ -1,0 +1,36 @@
+{{-  $pvName := printf "%s-%s-%s" .Release.Name .Chart.Name "pv" -}}
+{{-  $pvcName := printf "%s-%s-%s" .Release.Name .Chart.Name "pvc" -}}
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "lzw.fullname" . }}
+  labels:
+    app: {{ template "lzw.name" . }}
+    chart: {{ template "lzw.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "lzw.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "lzw.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+          - containerPort: 3000
+          volumeMounts:
+          - mountPath: "/opt"
+            name: {{ $pvName }}
+      volumes:
+      - name: {{ $pvName }}
+        persistentVolumeClaim:
+          claimName: {{ $pvcName }}
