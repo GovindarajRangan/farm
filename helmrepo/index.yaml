@@ -3,7 +3,7 @@ entries:
   catalog:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-02-20T20:10:13.0628237-05:00
+    created: 2019-03-06T15:56:24.1804498-05:00
     description: Wipro Cloud Services Catalog
     digest: f3742ae26aca092926eb2ddb41a4d89c4beaedb47060755787959baf9d4a2a14
     name: catalog
@@ -13,7 +13,7 @@ entries:
   icescrum:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-02-20T20:10:13.0668321-05:00
+    created: 2019-03-06T15:56:24.1874262-05:00
     description: IceScrum Agile Project Management
     digest: c799fb9779855322c07e432a275904cf4891e74b66a3f1eb9216f00953f1f13d
     name: icescrum
@@ -23,11 +23,11 @@ entries:
   lzw:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-02-20T20:10:13.0678258-05:00
+    created: 2019-03-06T15:56:24.1884516-05:00
     description: Wipro Landing Zone Wizard
-    digest: 616329e193f0e5478658106bf8821a85c15aaf4a9b639f4ac574f9218956de3e
+    digest: 662dc2ccec1753468555a1a4cd9e5e7206ebfdd6362bfb835f7c2aa8fbab46bf
     name: lzw
     urls:
     - lzw-0.0.9.tgz
     version: 0.0.9
-generated: 2019-02-20T20:10:13.0548187-05:00
+generated: 2019-03-06T15:56:24.1694363-05:00

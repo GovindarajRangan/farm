@@ -9,6 +9,8 @@ Start/Stop devops pod within AKS
 ## ops
 Services necessary for monitoring, logging, alerting, reporting
 
+## helm
+helm repo add myFarm https://5535efdee63577ee6fbb2d7f37634a11dd6e952c@raw.githubusercontent.com/GovindarajRangan/farm/master/helmrepo/
 
 Batch:
 az login
@@ -22,3 +24,5 @@ az aks get-credentials --resource-group myFarm --name myFarm
 kubectl get nodes
 
 kubectl exec -it <pod-name> -- /bin/bash
+
+
