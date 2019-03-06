@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: wipro.azurecr.io/wipro/catalog
-  tag: 0.0.1
+  tag: beta
   pullPolicy: IfNotPresent
 
 service:
@@ -22,6 +22,7 @@ ingress:
   path: /
   hosts: 
     - aksgovind.eastus.cloudapp.azure.com
+    - beta.cloudservices.wipro.com
     - cloudservices.wipro.com
   tls: []
   #  - secretName: chart-example-tls
