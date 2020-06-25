@@ -2,5 +2,5 @@ az resource move --destination-group myFarm --ids /subscriptions/18205e31-05af-4
 
 az group deployment create \
     --resource-group myFarm \
-    --template-uri https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/resourcegroupCleanup.json?token=AB3G5LJ5KFUGTPEVLQ3REMS66TS7Y \
+    --template-uri https://raw.githubusercontent.com/GovindarajRangan/farm/master/infra/resourcegroupCleanup.json \
     --mode complete
