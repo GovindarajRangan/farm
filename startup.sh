@@ -31,6 +31,10 @@ az aks create \
     --client-secret tLIB7wi+mGV8nnQskftuIYeJMr9FSIbBoHxFQwz4ERw= 
 
 az acr create --resource-group myFarm --name <unique-acr-name> --sku Basic --location eastus
+az aks show --resource-group myFarm --name myFarm --query "servicePrincipalProfile.clientId" --output tsv #gives aks service principal ID
+az acr show --name wipcloudlearn --resource-group myFarm --query "id" --output tsv #gives ACR id
+az role assignment create --assignee 3d957a5d-76d3-4b20-acc0-02881c366401 --role acrpull --scope /subscriptions/18205e31-05af-4759-aa25-2bb2be2bc1d4/resourceGroups/myFarm/providers/Microsoft.ContainerRegistry/registries/wipcloudlearn
+
 
 az resource move --destination-group MC_myFarm_myFarm_eastus --ids /subscriptions/18205e31-05af-4759-aa25-2bb2be2bc1d4/resourceGroups/myFarm/providers/Microsoft.Network/publicIPAddresses/AKSPublicIP
 az aks get-credentials --resource-group myFarm --name myFarm
