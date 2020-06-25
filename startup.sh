@@ -81,6 +81,9 @@ kubectl attach aks-ssh-56d9d4d98-cp5hd -c aks-ssh -i -t
 # Registry name: wipro, Login server: wipro.azurecr.io, user: wipro
 docker login --username wipro --password <> wipro.azurecr.io
 
+# Useful helm commands
+# https://docs.microsoft.com/en-us/azure/container-registry/container-registry-helm-repos
+
 #####################################################
 ### TESTED & ARCHIVED
 # Tuleap Project Management tool
