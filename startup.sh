@@ -12,7 +12,7 @@ az aks create \
     --node-vm-size Standard_DS1_v2 \
     --node-osdisk-size 32 \
     --dns-name-prefix myFarm \
-    --ssh-key-value "ssh-rsa ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAhJZpIlPt67lLUd9PYstTHW5Nbnk5FgTUROUAwbAQTEzLKfzUoLmwJPabQ1A04vq0r4zfVbKUxbAG0PuDS/J2ZoHPLVlDV2QAX8x8pWHEUkgumX0RnjfDnjm8h0GhZZVE76Dyjnr5aQyjlup6YYxec0N1Ck/I3fV7dBFrbBT8LFV9kgg6g4gvs0g4zYhVjweSVVt2urvkyAMucVnEZ8j/MX8GeBuZqHqoxrddMS1EElfpGjmoB9p1PBvmqBmmUpw4KJKXnTH/YENuvIiALo5fLyh0qWO4+odQ0xczxyzijQMCbbY1G+Y7seGhlMbireNbe0fUL/usLwRD87LtdeSaCQ== govindaraj.rangan@gmail.com" \
+    --ssh-key-value "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAhJZpIlPt67lLUd9PYstTHW5Nbnk5FgTUROUAwbAQTEzLKfzUoLmwJPabQ1A04vq0r4zfVbKUxbAG0PuDS/J2ZoHPLVlDV2QAX8x8pWHEUkgumX0RnjfDnjm8h0GhZZVE76Dyjnr5aQyjlup6YYxec0N1Ck/I3fV7dBFrbBT8LFV9kgg6g4gvs0g4zYhVjweSVVt2urvkyAMucVnEZ8j/MX8GeBuZqHqoxrddMS1EElfpGjmoB9p1PBvmqBmmUpw4KJKXnTH/YENuvIiALo5fLyh0qWO4+odQ0xczxyzijQMCbbY1G+Y7seGhlMbireNbe0fUL/usLwRD87LtdeSaCQ== govindaraj.rangan@gmail.com" \
     --service-principal 3d957a5d-76d3-4b20-acc0-02881c366401 \
     --client-secret tLIB7wi+mGV8nnQskftuIYeJMr9FSIbBoHxFQwz4ERw= 
 
