@@ -24,12 +24,15 @@ az role assignment create --assignee 3d957a5d-76d3-4b20-acc0-02881c366401 --role
 
 az resource move --destination-group MC_myFarm_myFarm_eastus --ids /subscriptions/18205e31-05af-4759-aa25-2bb2be2bc1d4/resourceGroups/myFarm/providers/Microsoft.Network/publicIPAddresses/AKSPublicIP
 az aks get-credentials --resource-group myFarm --name myFarm
-kubectl --namespace kube-system create serviceaccount tiller
-helm init --service-account tiller
+
+az acr helm repo add -n <MyRegistry>
+# kubectl --namespace kube-system create serviceaccount tiller  ### Tiller not required in helm 3 and above
+# helm init --service-account tiller
 # Wait for tiller pod to be deployed
+helm repo add myFarm <acr_registry>/helm
 helm repo update
-kubectl create clusterrolebinding tiller-cluster-role --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
-kubectl create clusterrolebinding kube-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
+# kubectl create clusterrolebinding tiller-cluster-role --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+# kubectl create clusterrolebinding kube-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
 
 # https://docs.microsoft.com/en-us/azure/aks/ingress
 # With RBAC
