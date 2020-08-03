@@ -34,6 +34,9 @@ helm repo update
 # kubectl create clusterrolebinding tiller-cluster-role --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
 # kubectl create clusterrolebinding kube-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
 
+# Creating Helm charts (OCI method)
+helm chart save . dhammak8stest.azurecr.io/helm/test:v1
+helm chart push dhammak8stest.azurecr.io/helm/test:v1
 # https://docs.microsoft.com/en-us/azure/aks/ingress
 # With RBAC
 helm install stable/nginx-ingress --name mwingress --namespace kube-system --set controller.service.loadBalancerIP=138.91.112.229
