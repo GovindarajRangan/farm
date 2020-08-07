@@ -16,6 +16,19 @@ az aks create \
     --service-principal 3d957a5d-76d3-4b20-acc0-02881c366401 \
     --client-secret tLIB7wi+mGV8nnQskftuIYeJMr9FSIbBoHxFQwz4ERw= 
 
+# Dhamma test env
+az aks create \
+    --name k8stest \
+    --resource-group dhammak8stest \
+    --node-count 2 \
+    --admin-username govindr \
+    --node-vm-size Standard_B2s \
+    --node-osdisk-size 32 \
+    --dns-name-prefix dhammak8stest \
+    --ssh-key-value "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAhJZpIlPt67lLUd9PYstTHW5Nbnk5FgTUROUAwbAQTEzLKfzUoLmwJPabQ1A04vq0r4zfVbKUxbAG0PuDS/J2ZoHPLVlDV2QAX8x8pWHEUkgumX0RnjfDnjm8h0GhZZVE76Dyjnr5aQyjlup6YYxec0N1Ck/I3fV7dBFrbBT8LFV9kgg6g4gvs0g4zYhVjweSVVt2urvkyAMucVnEZ8j/MX8GeBuZqHqoxrddMS1EElfpGjmoB9p1PBvmqBmmUpw4KJKXnTH/YENuvIiALo5fLyh0qWO4+odQ0xczxyzijQMCbbY1G+Y7seGhlMbireNbe0fUL/usLwRD87LtdeSaCQ== govindaraj.rangan@gmail.com" \
+    --service-principal 74eccaae-b0eb-4751-939c-e20550f07804 \
+    --client-secret hiAPOrA73C37_8SilxoX0W6CliqOMLVcXb
+    
 az acr create --resource-group myFarm --name <unique-acr-name> --sku Basic --location eastus
 az aks show --resource-group myFarm --name myFarm --query "servicePrincipalProfile.clientId" --output tsv #gives aks service principal ID
 az acr show --name wipcloudlearn --resource-group myFarm --query "id" --output tsv #gives ACR id
