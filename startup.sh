@@ -34,6 +34,7 @@ az aks show --resource-group myFarm --name myFarm --query "servicePrincipalProfi
 az acr show --name wipcloudlearn --resource-group myFarm --query "id" --output tsv #gives ACR id
 az role assignment create --assignee 3d957a5d-76d3-4b20-acc0-02881c366401 --role acrpull --scope /subscriptions/18205e31-05af-4759-aa25-2bb2be2bc1d4/resourceGroups/myFarm/providers/Microsoft.ContainerRegistry/registries/wipcloudlearn
 
+az network public-ip create --resource-group commonresources --name k8stestPublicIP --sku Standard --allocation-method static --query publicIp.ipAddress -o tsv
 
 az resource move --destination-group MC_myFarm_myFarm_eastus --ids /subscriptions/18205e31-05af-4759-aa25-2bb2be2bc1d4/resourceGroups/myFarm/providers/Microsoft.Network/publicIPAddresses/AKSPublicIP
 az aks get-credentials --resource-group myFarm --name myFarm
