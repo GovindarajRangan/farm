@@ -53,7 +53,8 @@ helm chart save . dhammak8stest.azurecr.io/helm/test:v1
 helm chart push dhammak8stest.azurecr.io/helm/test:v1
 # https://docs.microsoft.com/en-us/azure/aks/ingress
 # With RBAC
-helm install stable/nginx-ingress --name mwingress --namespace kube-system --set controller.service.loadBalancerIP=52.224.37.246 -set --set controller.service.annotations.service.beta.kubernetes.io/azure-load-balancer-resource-group="commonresources"
+helm install do-ingress stable/nginx-ingress --namespace helloworld --set controller.service.loadBalancerIP=52.224.37.246 --set controller.service.annotations.service.beta.kubernetes.io/azure-load-balancer-resource-group="commonresources"
+# helm install stable/nginx-ingress --name mwingress --namespace kube-system --set controller.service.loadBalancerIP=52.224.37.246 -set --set controller.service.annotations.service.beta.kubernetes.io/azure-load-balancer-resource-group="commonresources"
 # Without RBAC
 # helm install stable/nginx-ingress --name mwingress --namespace kube-system --set controller.service.loadBalancerIP=138.91.112.229 --set rbac.create=false --set rbac.createRole=false --set rbac.createClusterRole=false
 # Wait for Load balancer to be up and ingress controller to be running
